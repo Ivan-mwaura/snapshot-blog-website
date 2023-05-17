@@ -23,7 +23,7 @@ const Body = () =>{
     
     useEffect(() => {
         getimage()
-    },[data])
+    })
 
     const apidata = data.map(dt => {
         console.log(dt.user)
