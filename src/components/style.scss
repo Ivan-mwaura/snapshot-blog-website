@@ -125,16 +125,27 @@
     overflow: hidden;
     position: relative;
   }
+  /*.user--profile{
+    border-radius: 50%;
+    width: 40px;
+    position: absolute;
+    
+  }
+  .gallery--div .user--profile{
+    opacity: 1;
+  }
+*/
   
   .gallery--div .downloadicon--div {
     opacity: 1;
+    
   
     .download--icon {
       position: absolute;
       bottom: 0;
       right: 0;
       z-index: 1;
-      margin-right: 90px;
+      margin-right: 10px;
       margin-bottom: 10px;
       pointer-events: none;
       transition: opacity 2s ease-in-out;
@@ -148,9 +159,9 @@
   .gallery--div img {
     transition: transform 1s ease-in, opacity 1s ease-in-out;
     transform-origin: center center;
-    width: 220px;
-    height: 350px;
-    object-fit: cover;
+    height: 100%;
+    width: fit-content;
+    object-fit: contain;
     opacity: 0; /* Start with 0 opacity */
   }
   

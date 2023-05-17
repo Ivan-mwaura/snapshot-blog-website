@@ -23,16 +23,20 @@ const Body = () =>{
     
     useEffect(() => {
         getimage()
-    })
+    },[data])
 
     const apidata = data.map(dt => {
+        console.log(dt.user)
         return(
             <Gallery
                 key={dt.id}
                 
                 webformatURL={dt.webformatURL}
-                
+                userProfile = {dt.userImageURL}
+                user = {dt.user}
+
             />
+            
             )
     })
     

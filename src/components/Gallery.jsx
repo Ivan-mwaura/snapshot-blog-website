@@ -2,9 +2,23 @@ import React, { useState } from "react";
 import { Download } from "react-bootstrap-icons";
 import "../components/style.scss";
 
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function calculateDimensions() {
+  const width = getRandomNumber(200, 250);
+  const height = getRandomNumber(260, 340);
+  return {
+    width: `${width}px`,
+    height: `${height}px`,
+  };
+}
+
 function Gallery({ webformatURL }) {
   const [hovered, setHover] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [dimensions] = useState(calculateDimensions());
 
   function handleMouseEnter() {
     setHover(true);
@@ -27,6 +41,7 @@ function Gallery({ webformatURL }) {
       className={`gallery--div ${hovered ? "hovered" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      style={dimensions}
     >
       {hovered && (
         <div className="downloadicon--div">
