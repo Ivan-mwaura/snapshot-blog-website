@@ -3,7 +3,7 @@ import React from "react";
 import Querycontext from "../Context/querycontext";
 import Gallery from "./Gallery";
 import { Route, Routes } from "react-router";
-//import MiniHeader from "./miniHeader";
+
 const Mainpage = () => {
     return(
         <div>

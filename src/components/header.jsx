@@ -22,36 +22,7 @@ const Header = () =>{
         })
     }
 
-    const handleQuery1= () =>{
-        setQuery(
-            {
-                searchQuery:"mountain"
-            }
-        )
-    }
-
-    const handleQuery2= () =>{
-        setQuery(
-            {
-                searchQuery:"beaches"
-            }
-        )
-    }
-
-    const handleQuery3= () =>{
-        setQuery(
-            {
-                searchQuery:"birds"
-            }
-        )
-    }
-    const handleQuery4= () =>{
-        setQuery(
-            {
-                searchQuery:"food"
-            }
-        )
-    }
+  
 
    /* function fetchImages(event){
        handleChange(event)
