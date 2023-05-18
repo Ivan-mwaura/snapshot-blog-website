@@ -2,7 +2,7 @@ import React from "react";
 import "../components/style.scss"
 import { AppContext } from "../Context/querycontext";
 import { useContext } from "react";
-//import { Search } from "react-bootstrap-icons";
+import { Bell, Upload } from "react-bootstrap-icons";
 
 const Header = () =>{
 
@@ -72,18 +72,38 @@ const Header = () =>{
                     value={query.searchQuery}
                     
                 />
-              { /* <button className="search--button"
-                onClick={fetchImages}
-                >
-                    <Search
-                        size={25}
-                    />
-                </button>*/}
+
+            <select  className = "explore">
+                <option value="">Explore</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+            </select>
+              
                 </form>
             </span>
-            <br/>
-           
-                <span className="buttons" >
+        
+          <span className ="notification">
+            <Bell
+            size={20}
+            //style={{backgroundColor: "#d7dbdf"}}
+            />
+            </span>
+
+           <span className="profile">
+                <img src="" alt="" className="profile--photo"/>
+            </span>
+            
+          <span className = "upload">
+            <button className="upload--button">
+                <Upload
+                    size={20}
+                    color="white"
+                />Upload
+            </button>
+          </span>
+
+            { /*<<span className="buttons" >
                         <span className="b--span"><button className="btn" onClick={handleQuery1}>Mountain</button> &nbsp;&nbsp;</span>
                         <span className = "b--span"><button className="btn" onClick={handleQuery2}>Beaches</button>&nbsp;&nbsp;</span>
                         <span className = "b--span"><button className="btn" onClick={handleQuery3}>Birds</button>&nbsp;&nbsp;</span>   
@@ -93,7 +113,7 @@ const Header = () =>{
                 </span>
                 
                 <br/>
-                <span className="h--span">{<h2 className="heading--2">searching...<div className = "heading--2-span">{<i>{query.searchQuery}</i>}</div> </h2>}</span>
+               span className="h--span">{<h2 className="heading--2">searching...<div className = "heading--2-span">{<i>{query.searchQuery}</i>}</div> </h2>}</span>*/}
                
 
             </nav>

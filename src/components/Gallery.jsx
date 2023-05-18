@@ -7,8 +7,8 @@ function getRandomNumber(min, max) {
 }
 
 function calculateDimensions() {
-  const width = getRandomNumber(200, 250);
-  const height = getRandomNumber(260, 340);
+  const width = getRandomNumber(220, 250);
+  const height = getRandomNumber(200, 340);
   return {
     width: `${width}px`,
     height: `${height}px`,
@@ -37,6 +37,7 @@ function Gallery({ webformatURL }) {
   }
 
   return (
+        
     <div
       className={`gallery--div ${hovered ? "hovered" : ""}`}
       onMouseEnter={handleMouseEnter}
@@ -59,8 +60,10 @@ function Gallery({ webformatURL }) {
         alt=""
         className={`searched--image ${imageLoaded ? "fade-in" : ""}`}
         onLoad={handleImageLoad}
+        style={dimensions}
       />
     </div>
+
   );
 }
 

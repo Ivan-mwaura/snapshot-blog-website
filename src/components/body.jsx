@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { AppContext } from "../Context/querycontext";
 import Gallery from "./Gallery";
 import "./style.scss"
+import MiniHeader from "./miniheader";
 
 
 
@@ -41,14 +42,22 @@ const Body = () =>{
     })
     
     return(
+
+    <div>
+       
+       
         <div className="mapped--container">
-            <div className="mapped--div">
-                
-                {apidata}
+            <div>               
+                    <MiniHeader/>
+                           
+                <div className="mapped--div">
+            
+                    {apidata}
+                </div>
             </div>
         </div>
        
-       
+    </div>    
     )
 }
 export default Body;

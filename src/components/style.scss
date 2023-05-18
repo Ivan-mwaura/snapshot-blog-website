@@ -1,5 +1,5 @@
 @mixin laptop {
-    @media screen and (max-width : 800px) {
+    @media screen and (max-width : 1600px) {
         @content;
     }
 }
@@ -16,50 +16,108 @@
 
 .header--container{
     display: flex;
-    justify-content: center;
+    
     background-color: gray;
     width: 100%;
       
     .header--content{
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        padding: 15px;
         position: fixed;
         top: 0;
         z-index: 999;
-        background-color:rgb(241, 235, 235);
+       background-color:  white;;
         width: 100%;
         box-shadow: 2px 0px 2px 2px rgb(241, 235, 235);
+       
         .h--span{
             display: flex;
             justify-content: center;
             .heading--1{
-                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-family: Open Sans,system-ui;
                 color: #051c33;
-                font-size: 2.5em;
+                font-size: 2em;
             }
         }
 
        .search--form{
             display: flex;
-            
+            padding-left: 3px;
           .search--bar{
-            width: 500px;
-            height: 30px;
-            border: 3px solid #d7dbdf;
-            border-radius: 6px;
-            margin-left: 8px;
+           width: 800px;
+            height: 40px;
+            padding-left: 6px;
+            border: none;
+            border-radius: 20px;
+            margin-left: 15px;
+            background-color: #eef1f5;
 
-
-    @include mobile{
-        width: 350px;
-    }
+            &:hover{
+              
+              border: none;
+            }
             
-           
+                 
+            @include tablet{
+              width: 350px;
+            }
+            @include mobile{
+              width: 250px;
+            }
         }
         
        }
-        
+       
+       .explore{
+        width: 90px;
+        height: 40px;
+        border-radius: 5px;
+        border: none;
+       margin-left: 10px;
+       
+        &:hover {
+          background-color: #eef1f5;
+        }
+       }
+
+       .notification{
+          display: flex;
+          justify-content: center;
+          width: 50px;
+          padding-top: 10px;
+          margin-left: 15px;
+          &:hover{
+            background-color: #d7dbdf;
+            border-radius: 50%;
+            width: 50px;
+            object-fit: cover;
+          }
+       }
+
+       .profile{
+          width: 50px;
+          background-color: yellow;
+          border-radius: 50%;
+          margin-left: 10px;
+        .profile--photo{
+          width: 50px;
+          
+          
+        }
+
+       }
+       .upload {
+        margin-left: 10px;
+        .upload--button{
+          width: 100px;
+          height: 40px;
+          border-radius: 15px;
+          border: 0.5px;
+          text-align: center;
+          background-color: rgb(88, 139, 88);
+          color: white;
+        }
+       }
     .buttons{
         width:100%;
         display: flex;
@@ -107,15 +165,103 @@
     display: flex;
     justify-content: center;
     padding: 50px;
-    margin-top:210px;
-    margin-left: 30px;
-    .mapped--div{
+    margin-top:70px;
+    margin-left: 20px;
+    
 
+  .mini-header-container{
+   display: flex;
+    margin-left: 5px;
+   
+    .mini-header-left{
+      display: flex;
+      
+
+      .explore{
+        text-align: center;
+          width: 140px;
+          height: 40px;
+          margin-left: 2px;
+          border-radius: 10px;
+          border: none;
+          font-size: 15px;
+          font-weight: 500;
+          color: gray;
+          &:hover{
+            background-color: #d7dbdf;
+            border-radius: 10px;
+           
+            
+          }
+          
+      }
+
+    }
+    .mini-header-right{
+      display: flex;
+      padding-left: 200px;
+
+      .switch{
+        padding-top: 10px;
+        
+      }
+      .switch--mode{
+        text-align: center;
+        padding-top: 10px;
+      }
+      .question{
         display: flex;
+        justify-content: center;
+        background-color: #d7dbdf;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        padding-top: 5px;
+        margin-left: 10px;
+        margin-top: 7px;
+      }
+      .explore{
+        text-align: center;
+          width: 140px;
+          height: 40px;
+          margin-left: 2px;
+          border-radius: 20px;
+          font-size: 17px;
+          //color: gray;
+          margin-left: 30px;
+         
+          &:hover{
+           // background-color: #d7dbdf;
+            border-radius: 10px;
+           
+            
+          }
+          
+      }
+
+    }
+   
+  }
+
+
+    .mapped--div{
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        gap: 10px;
+        margin-top: 80px;
+
+        @include tablet{
+          grid-template-columns: auto auto auto;
+        }
+        @include mobile{
+          grid-template-columns: auto auto;
+        }
+      
+       /* display: flex;
         flex-wrap: wrap;
     
         flex: 1 0 33%;
-        gap: 25px;
+        gap: 25px;*/
         
     }
 }
@@ -159,9 +305,8 @@
   .gallery--div img {
     transition: transform 1s ease-in, opacity 1s ease-in-out;
     transform-origin: center center;
-    height: 100%;
-    width: fit-content;
-    object-fit: contain;
+    object-fit: cover;
+    width: 100%;
     opacity: 0; /* Start with 0 opacity */
   }
   
