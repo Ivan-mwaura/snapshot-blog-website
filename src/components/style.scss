@@ -3,20 +3,27 @@
         @content;
     }
 }
+@mixin pad{
+  @media screen and (max-width : 1200px) {
+      @content;
+  }
+}
 @mixin tablet {
     @media screen and (max-width: 768px) {
       @content;
     }
 }
+
 @mixin mobile {
-    @media screen and (max-width : 600px) {
-        @content;
-    }
+  @media screen and (max-width : 600px) {
+      @content;
+  }
 }
+
 
 .header--container{
     display: flex;
-    
+    justify-content: center;
     background-color: gray;
     width: 100%;
       
@@ -30,23 +37,22 @@
         width: 100%;
         box-shadow: 2px 0px 2px 2px rgb(241, 235, 235);
        
-        .h--span{
-            display: flex;
-            justify-content: center;
-            .heading--1{
-                font-family: Open Sans,system-ui;
-                color: #051c33;
-                font-size: 2em;
-            }
-        }
+      .logo--title{
+        width: 100px;
+        height: 70px;
+
+      }
+
+      
 
        .search--form{
             display: flex;
             padding-left: 3px;
+            padding-top:10px;
           .search--bar{
            width: 800px;
             height: 40px;
-            padding-left: 6px;
+            padding-left: 6px;            
             border: none;
             border-radius: 20px;
             margin-left: 15px;
@@ -57,7 +63,9 @@
               border: none;
             }
             
-                 
+                 @include pad{
+                  width: 450px;
+                 }
             @include tablet{
               width: 350px;
             }
@@ -67,16 +75,26 @@
         }
         
        }
+       .justify--icon{
+        margin-left: 30px;
+        padding-bottom: 10px;
+       }
        
        .explore{
         width: 90px;
         height: 40px;
-        border-radius: 5px;
+        border-radius: 10px;
         border: none;
-       margin-left: 10px;
+        margin-left: 30px;
+        font-size: 15px;
+        font-weight: 500;
+        color: gray;
        
         &:hover {
           background-color: #eef1f5;
+        }
+        @include tablet(){
+          display: none;
         }
        }
 
@@ -84,30 +102,38 @@
           display: flex;
           justify-content: center;
           width: 50px;
-          padding-top: 10px;
+          height: 50px;
+          padding-top: 17px;
           margin-left: 15px;
           &:hover{
             background-color: #d7dbdf;
             border-radius: 50%;
             width: 50px;
+            height: 50px;
             object-fit: cover;
           }
+         
        }
 
        .profile{
           width: 50px;
+          height: 50px;
           background-color: yellow;
           border-radius: 50%;
           margin-left: 10px;
+          margin-top: 5px;
         .profile--photo{
           width: 50px;
-          
-          
+          height: 50px;      
+        }
+        @include tablet(){
+          display: none;
         }
 
        }
        .upload {
-        margin-left: 10px;
+        margin-left: 25px;
+        margin-top: 6px;
         .upload--button{
           width: 100px;
           height: 40px;
@@ -116,6 +142,9 @@
           text-align: center;
           background-color: rgb(88, 139, 88);
           color: white;
+        }
+        @include tablet(){
+          display: none;
         }
        }
    
@@ -148,6 +177,10 @@
     .mini-header-left{
       display: flex;
       
+      @include tablet(){
+        display: none;
+      }
+      
 
       .explore{
         text-align: center;
@@ -162,25 +195,70 @@
           &:hover{
             background-color: #d7dbdf;
             border-radius: 10px;
-           
-            
+                    
           }
           
       }
 
     }
+
+    .filter--container{    
+      
+      display: none;
+
+      button{
+        border: none;
+        width: 200px;
+          height: 40px;
+          background-color: white;
+        &:hover{
+          background-color: #d7dbdf;
+          border-radius: 10px;
+                  
+        }
+        .filter{
+        
+          
+          
+          border-radius: 10px;
+          border: none;
+         
+          color: gray;
+         
+        }
+      }
+      
+
+      @include tablet(){
+        display: block;
+      }
+      
+      
+    }
     .mini-header-right{
       display: flex;
       padding-left: 200px;
 
+      @include tablet(){
+        padding-left: 15px;
+      }
+
       .switch{
         padding-top: 10px;
         
+        @include tablet{
+          display: none;
+        }
       }
       .switch--mode{
         text-align: center;
         padding-top: 10px;
+
+        @include tablet{
+          display: none;
+        }
       }
+
       .question{
         display: flex;
         justify-content: center;
@@ -191,22 +269,30 @@
         padding-top: 5px;
         margin-left: 10px;
         margin-top: 7px;
+
+        @include tablet{
+          display: none;
+        }
       }
-      .explore{
+      .most--relevant{
+          
         text-align: center;
           width: 140px;
           height: 40px;
-          margin-left: 2px;
           border-radius: 20px;
           font-size: 17px;
-          //color: gray;
-          margin-left: 30px;
-         
+          margin-left: 10px; 
+
+          @include tablet(){
+             margin-bottom: 0px;
+             width: 250px;
+          }
+
           &:hover{
            // background-color: #d7dbdf;
-            border-radius: 10px;
-           
-            
+            border-radius: 20px;
+            border: 1px solid black;
+                  
           }
           
       }
@@ -222,6 +308,11 @@
       h1{
         font-size: 30px;
         font-weight: bold;
+
+        @include tablet(){
+          font-size: 20px;
+          margin-left: 18px;
+        }
       }
 
      
@@ -230,6 +321,10 @@
     .buttons{
       display: flex;
         padding-top: 30px;
+
+        @include tablet(){
+          display: none;
+        }
 
         h1{
           font-size: 17px;
@@ -252,12 +347,19 @@
         grid-template-columns: auto auto auto auto auto;
         gap: 10px;
         margin-top: 40px;
-
+       
+        @include pad{
+          grid-template-columns:auto auto auto auto;
+          gap:0px;
+          
+        }
         @include tablet{
           grid-template-columns: auto auto auto;
+          gap: 1px;
         }
         @include mobile{
           grid-template-columns: auto auto;
+          gap: 1px;
         }
       
        /* display: flex;
@@ -285,7 +387,6 @@
       z-index: 1;
       margin-left: 50px;
       margin-bottom: 10px;
-      pointer-events: none;
       font-size: 14px;
       color: white;
       transition: opacity 2s ease-in-out;
@@ -302,8 +403,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    z-index: 1;
-    
+    z-index: 1;   
     margin-left: 10px;
     margin-bottom: 7px;
     object-fit: cover;
@@ -331,7 +431,6 @@
       z-index: 1;
       margin-right: 50px;
       margin-bottom: 40px;
-      pointer-events: none; 
       font-size: 12px;
       color: white;
       transition: opacity 2s ease-in-out;
@@ -352,7 +451,6 @@
       z-index: 1;
       margin-right: 10px;
       margin-bottom: 10px;
-      pointer-events: none;
       transition: opacity 2s ease-in-out;
   
       &.hovered .download--icon {
@@ -370,8 +468,7 @@
         left: 0;
         z-index: 1;
         margin-left: 10px;
-        margin-top: 10px;
-        pointer-events: none;
+        margin-top: 10px;       
         transition: opacity 2s ease-in-out;
 
     
@@ -379,6 +476,7 @@
           opacity: 1;
         }
       }
+     
     }
     
     .gallery--div .favourites-icon-div {
@@ -392,7 +490,6 @@
           z-index: 1;
           margin-left: 60px;
           margin-top: 10px;
-          pointer-events: none;
           transition: opacity 2s ease-in-out;
       
           &.hovered .favourites--icon {
@@ -416,4 +513,5 @@
   .gallery--div img.fade-in {
     opacity: 1; /* Set opacity to 1 to show the image */
   }
+  
   

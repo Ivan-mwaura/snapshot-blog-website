@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Question } from "react-bootstrap-icons";
+import { Question, Sliders,  } from "react-bootstrap-icons";
 import Switch from 'react-switch';
 
 const MiniHeader = () =>{
@@ -49,6 +49,12 @@ const MiniHeader = () =>{
                 </select>
 
          </div> 
+         <div className="filter--container">
+            <button>
+                 <Sliders className="filter"/> filter   
+            </button>
+              
+         </div>
          
          <span className ="mini-header-right">
             <span className ="switch">
@@ -64,7 +70,7 @@ const MiniHeader = () =>{
                 <Question/>
             </span>
 
-            <select  className = "explore">
+            <select  className = "most--relevant">
                 <option value="">Most relevant</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>

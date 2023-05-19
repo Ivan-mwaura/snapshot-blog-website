@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { BookmarkPlus, Download, Heart } from "react-bootstrap-icons";
+import { BookmarkCheck, BookmarkPlus, Download, Heart } from "react-bootstrap-icons";
 import "../components/style.scss";
+import { saveAs } from "file-saver";
 
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -19,6 +20,8 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
   const [hovered, setHover] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [dimensions] = useState(calculateDimensions());
+  const[like, setLike]= useState(false)
+  const[favourite, setFavourite] = useState(false)
 
   function handleMouseEnter() {
     setHover(true);
@@ -33,8 +36,22 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
   }
 
   function handledownload() {
+   console.log("click download")
     // Download logic
+    const fileName = "Image.jpg"
+    const fileURL = webformatURL
+
+    saveAs(fileURL,fileName);
+
   }
+  function handleLike(){
+    setLike((prevLike )=> !prevLike )
+  }
+  function handleFavourite(){
+    setFavourite((prevFavourite => !prevFavourite))
+    
+  }
+
 
   return (
         
@@ -43,43 +60,67 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={dimensions}
+      
     >
       {hovered && (
-        <div className="downloadicon--div">
+        <div className="downloadicon--div"  >
           <Download
             className="download--icon"
             color="black"
             size={35}
             style={{ backgroundColor: "#ddd", padding: "5px", borderRadius: "5px" }}
             onClick={handledownload}
+           
           />
+         
         </div>
         
       )}
         {hovered && (
-        <div className="hearticon--div">
+        <div className="hearticon--div" >
        
           <Heart
-            className="heart--icon "
-            color="white"
+            className="heart--icon"
+            color= {like ? "red": "white"}
             fontSize="bold"
             size={35}
-            style={{  padding: "6px", borderRadius:"6px" ,border:"1px solid white" }}
-            onClick={handledownload}
+            style={{  padding: "6px",
+               borderRadius:"6px" ,
+               border:like ? "none" : "1px solid white" ,
+               backgroundColor : like ? "white" : ""
+              }}
+           
+              onClick ={handleLike}
           />
         </div>
         
       )}
         {hovered && (
-        <div className="favourites-icon-div">
+        <div className={`favourites-icon-div ${hovered ? "hovered" : ""}`}>
        
-          <BookmarkPlus
+         {favourite ?  <BookmarkCheck
             className="favourites--icon"
-            color="white"
+            color={favourite ? "rgb(139, 231, 139)":"white"}
             size={35}
-            style={{ padding: "5px" , borderRadius:"6px" ,border:"1px solid white"}}
-            onClick={handledownload}
-          />
+            style={{ padding: "5px" ,
+             borderRadius:"6px" ,
+             border: favourite ? "none" : "1px solid white",
+             backgroundColor: favourite ? "white": "",
+             
+            }}
+            onClick={handleFavourite}
+          /> : <BookmarkPlus
+          className="favourites--icon"
+          color={favourite ? "rgb(139, 231, 139)":"white"}
+          size={35}
+          style={{ padding: "5px" ,
+           borderRadius:"6px" ,
+           border: favourite ? "none" : "1px solid white",
+           backgroundColor: favourite ? "white": "",
+           
+          }}
+          onClick={handleFavourite}
+        />}
         </div>
         
       )}
@@ -90,12 +131,12 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
       )}
       {hovered && (
         
-            <img src={userProfile} alt="" className="user--image"/>
+            <img src={userProfile} alt="" className="user--image" />
      
       )}
        {hovered && (
         <div className="picture--tag"> 
-            <p className="tag">{tags}</p>
+            <p className="tag" >{tags}</p>
         </div>
       )}
       <img
@@ -104,6 +145,7 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
         className={`searched--image ${imageLoaded ? "fade-in" : ""}`}
         onLoad={handleImageLoad}
         style={dimensions}
+        
       />
     </div>
 

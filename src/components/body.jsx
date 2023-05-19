@@ -37,7 +37,7 @@ const Body = () =>{
 
     
     const apidata = data.map(dt => {
-        console.log(dt.userImageURL)
+        
         return(
             <Gallery
                 key={dt.id}

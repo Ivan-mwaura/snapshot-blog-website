@@ -1,14 +1,14 @@
-import React from "react"; 
+import React, { useEffect, useState } from "react"; 
 import "../components/style.scss"
 import { AppContext } from "../Context/querycontext";
 import { useContext } from "react";
-import { Bell, Upload } from "react-bootstrap-icons";
+import { Bell, Justify, Upload } from "react-bootstrap-icons";
+import logo from "../Images/logo_1.jpg"
 
 const Header = () =>{
 
     const {query,setQuery} = useContext(AppContext)
-
-   
+    const[windowWidth, setwindowWidth] = useState(window.innerWidth)
 
     function handleChange(event){
       
@@ -17,20 +17,29 @@ const Header = () =>{
                 ...prevQuery,
                 [event.target.name] : event.target.value
             }
-           
-            
+                   
         })
     }
+    console.log(windowWidth)
 
-  
+  useEffect(()=>{
+    function handleResize(){
+        setwindowWidth(window.innerWidth)
+    }
+    
 
-   /* function fetchImages(event){
-       handleChange(event)
-    }*/
+    window.addEventListener("resize" , handleResize)
+
+    window.removeEventListener("resize", handleResize)
+ 
+  },[setwindowWidth])
+
+
     return(
         <div className="header--container">
          <nav className="header--content"> 
-            <span className = "h--span"><h1 className="heading--1"><i>SnapShot</i></h1></span>
+            <img src={logo} alt="" className="logo--title"/> 
+        
             <span className = "h--span">
             <form className="search--form">
                 <input
@@ -43,6 +52,7 @@ const Header = () =>{
                     value={query.searchQuery}
                     
                 />
+               
 
             <select  className = "explore">
                 <option value="">Explore</option>
@@ -60,9 +70,13 @@ const Header = () =>{
             //style={{backgroundColor: "#d7dbdf"}}
             />
             </span>
+            <Justify
+                    size={70}
+                    className="justify--icon"
+                />
 
            <span className="profile">
-                <img src="" alt="" className="profile--photo"/>
+                {/*<img src="" alt="" className="profile--photo"/>*/}
             </span>
             
           <span className = "upload">
@@ -73,19 +87,6 @@ const Header = () =>{
                 />Upload
             </button>
           </span>
-
-            { /*<<span className="buttons" >
-                        <span className="b--span"><button className="btn" onClick={handleQuery1}>Mountain</button> &nbsp;&nbsp;</span>
-                        <span className = "b--span"><button className="btn" onClick={handleQuery2}>Beaches</button>&nbsp;&nbsp;</span>
-                        <span className = "b--span"><button className="btn" onClick={handleQuery3}>Birds</button>&nbsp;&nbsp;</span>   
-                        <span className = "b--span"><button className="btn" onClick={handleQuery4}>Food</button>&nbsp;&nbsp;</span>
-                        
-                              
-                </span>
-                
-                <br/>
-               span className="h--span">{<h2 className="heading--2">searching...<div className = "heading--2-span">{<i>{query.searchQuery}</i>}</div> </h2>}</span>*/}
-               
 
             </nav>
         </div>
