@@ -4,6 +4,7 @@ import { AppContext } from "../Context/querycontext";
 import { useContext } from "react";
 import { Bell, Justify, Upload } from "react-bootstrap-icons";
 import logo from "../Images/logo_1.jpg"
+import Explore from "../SelectInputs/Explore";
 
 const Header = () =>{
 
@@ -41,7 +42,7 @@ const Header = () =>{
             <img src={logo} alt="" className="logo--title"/> 
         
             <span className = "h--span">
-            <form className="search--form">
+               <form className="search--form">
                 <input
 
                     type="text"
@@ -54,16 +55,21 @@ const Header = () =>{
                 />
                
 
-            <select  className = "explore">
+           {/*
+           <select  className = "explore">
                 <option value="">Explore</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
             </select>
+            */} 
               
                 </form>
             </span>
-        
+
+            <div className="explore">
+                <Explore/>
+            </div>
           <span className ="notification">
             <Bell
             size={20}

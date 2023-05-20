@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Question, Sliders,  } from "react-bootstrap-icons";
 import Switch from 'react-switch';
+import AllImages from "../SelectInputs/AllImages";
+import Orientation from "../SelectInputs/Orientation";
+import Size from "../SelectInputs/Size";
+import PublishedDate from "../SelectInputs/PublishedDate";
+
 
 const MiniHeader = () =>{
 
@@ -15,38 +20,16 @@ const MiniHeader = () =>{
                  
              <div className="mini-header-left">
 
-                <select  className = "explore">
-                <option value="">All Images</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-                </select>
-        
-                <select  className = "explore">
-                <option value="">Orientation</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-                </select>
-
-                <select  className = "explore">
-                <option value="">Size</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-                </select>
+              <AllImages/>
+              <Orientation/>
+               <Size/>
                 <select  className = "explore">
                 <option value="">Color</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
                 </select>
-                <select  className = "explore">
-                <option value="">Published date</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-                </select>
+               <PublishedDate/>
 
          </div> 
          <div className="filter--container">
@@ -72,9 +55,11 @@ const MiniHeader = () =>{
 
             <select  className = "most--relevant">
                 <option value="">Most relevant</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+                <option value="option1">Latest</option>
+                <option value="option2">Editors choice</option>
+                <option value="option3">Trending</option>
+                <option value="option3">Most relevant</option>
+
             </select>
             
         </span>
