@@ -1,20 +1,21 @@
 import React from "react";
-
 import Querycontext from "../Context/querycontext";
-import Gallery from "./Gallery";
-import { Route, Routes } from "react-router";
+//import Gallery from "../components/Gallery";
+//import { Route, Routes } from "react-router";
+import Footer from "../components/footer";
 
 const Mainpage = () => {
     return(
         <div>
             
             <Querycontext/>
-            <Routes>    
+           {/*  <Routes>    
                 <Route path="*" default element = {<Gallery/>}/>
-            </Routes>
-           
-           
-           
+                
+            </Routes>*/}
+            {/*<Gallery/>*/}
+            <Footer/>
+                    
         </div>
     )
    

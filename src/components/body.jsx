@@ -12,7 +12,7 @@ const Body = () =>{
     
     
 
-    const {query,data, setData,setHits} = useContext(AppContext)
+    const {query,data, setData,setHits ,setFeedback} = useContext(AppContext)
 
     const apikey = "36442909-5ba159e769d3fab129ac65640"
 
@@ -21,7 +21,7 @@ const Body = () =>{
     useEffect(() => {
 
         function getimage(){
-            fetch (`https://pixabay.com/api/?key=${apikey}&q=${encodeURIComponent(query.searchQuery)}&page=3&per_page=200`)
+            fetch (`https://pixabay.com/api/?key=${apikey}&q=${encodeURIComponent(query.searchQuery)}&page=3&per_page=100`)
            .then(response => response.json())
            .then(response => {
                              setData(response.hits)
@@ -33,11 +33,19 @@ const Body = () =>{
         
         getimage()
 
+      
+
     },[query,setData,setHits])
 
-    
+    if(data > 0){
+        setFeedback(true)
+        console.log("overfeedback")
+    }
+    else{
+        console.log("feedback")
+    }
     const apidata = data.map(dt => {
-        
+       
         return(
             <Gallery
                 key={dt.id}
@@ -50,6 +58,8 @@ const Body = () =>{
             
             )
     })
+
+ 
     
     return(
 
@@ -62,7 +72,7 @@ const Body = () =>{
                     <SecondHeader/>           
                            
                 <div className="mapped--div">
-            
+
                     {apidata}
                 </div>
             </div>

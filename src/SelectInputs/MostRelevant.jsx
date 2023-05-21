@@ -1,7 +1,7 @@
 import React from "react";
 import Select from 'react-select';
 
-const PublishedDate= () =>{
+const MostRelevant= () =>{
 
     const options = [
         {  label: 'Any' },
@@ -17,8 +17,9 @@ const PublishedDate= () =>{
             ...provided,
             borderRadius:'5px',
             border:'none',
-            width:'180px',
+            width:'170px',
             height:'40px',
+            marginLeft:'20px',
 
             '&:hover':{backgroundColor:' #d7dbdf', border:'none' ,borderRadius:'6px'}
 
@@ -37,4 +38,4 @@ return(
     </div>
 )
 }
-export default PublishedDate;
+export default MostRelevant;

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BookmarkCheck, BookmarkPlus, Download, Heart } from "react-bootstrap-icons";
 import "../components/style.scss";
 import { saveAs } from "file-saver";
+import { AppContext } from "../Context/querycontext";
 
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -52,10 +53,11 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
     
   }
 
+  const{feedback} = useContext(AppContext)
 
   return (
         
-    <div
+    !feedback ?  <div
       className={`gallery--div ${hovered ? "hovered" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -147,9 +149,9 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
         style={dimensions}
         
       />
-    </div>
+    </div> : null
 
-  );
+  ); 
 }
 
 export default Gallery;

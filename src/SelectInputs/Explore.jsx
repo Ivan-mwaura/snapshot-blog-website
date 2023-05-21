@@ -50,7 +50,7 @@ const Explore = () => {
         control: (provided) => ({
             ...provided,
             borderRadius:'5px',
-            border:'1px solid black',
+            border:'none',
             width:'150px',
             height:'40px',
 

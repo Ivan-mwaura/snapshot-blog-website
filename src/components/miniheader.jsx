@@ -5,6 +5,7 @@ import AllImages from "../SelectInputs/AllImages";
 import Orientation from "../SelectInputs/Orientation";
 import Size from "../SelectInputs/Size";
 import PublishedDate from "../SelectInputs/PublishedDate";
+import MostRelevant from "../SelectInputs/MostRelevant";
 
 
 const MiniHeader = () =>{
@@ -44,7 +45,7 @@ const MiniHeader = () =>{
                 <Switch
                     checked = {isChecked}
                     onChange={handleChecked}
-                
+                    size={100}
                 />&nbsp;&nbsp;
             </span> <span className ="switch--mode">Safe search</span>
            
@@ -53,14 +54,7 @@ const MiniHeader = () =>{
                 <Question/>
             </span>
 
-            <select  className = "most--relevant">
-                <option value="">Most relevant</option>
-                <option value="option1">Latest</option>
-                <option value="option2">Editors choice</option>
-                <option value="option3">Trending</option>
-                <option value="option3">Most relevant</option>
-
-            </select>
+            <MostRelevant/>
             
         </span>
         
