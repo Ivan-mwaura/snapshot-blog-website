@@ -21,6 +21,7 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
   const[favourite, setFavourite] = useState(false)
 
   const selectedOption = useSelector((state) => state.selectedOption );
+  
 
   useEffect(() => {
     const image = new Image();
@@ -44,53 +45,19 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
       let width ,height;
   
     if(selectedOption &&selectedOption.value === 'vertical'){
-      if(window.innerWidth < 600){
-        width = getRandomNumber(200, 240);
-         height = getRandomNumber(200, 300);
-      }
-    
-      else if(window.innerWidth > 768 && window.innerWidth < 1000){
-        width = getRandomNumber(190, 220);
-         height = getRandomNumber(200, 300);
-      }
-      else{
-        width = getRandomNumber(220, 250);
-       height = getRandomNumber(250, 330);
-      }
+      width = getRandomNumber(220, 250);
+        height = getRandomNumber(250, 330);
     }
     else if(selectedOption &&selectedOption.value === 'horizontal'){
-         if(window.innerWidth < 600){
-        width = 250;
-         height = 250;
-      }
-    
-      else if(window.innerWidth > 768 && window.innerWidth < 1000){
-        width = 250;
-         height = 250;
-      }
-      else{
-        width = 250;
-       height = 250;
-      }
+      width = 250;
+      height = 250;
     }
     else{
-      if(window.innerWidth < 600){
-        width = 440;
-         height = 350;
-      }
-    
-      else if(window.innerWidth > 768 && window.innerWidth < 1000){
-        width = getRandomNumber(190, 220);
-         height = getRandomNumber(200, 300);
-      }
-      else{
-        width = getRandomNumber(220, 250);
-       height = getRandomNumber(250, 330);
-      }
+      width = getRandomNumber(220, 250);
+      height = getRandomNumber(250, 330);
     }
       
-     
-      
+          
       return {
         width: `${width}px`,
         height: `${height}px`,
@@ -225,14 +192,16 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
             <p className="tag" >{tags}</p>
         </div>
       )}
-      <img
-        src={webformatURL}
-        alt=""
-        className={`searched--image ${imageLoaded ? "fade-in" : ""}`}
-        onLoad={handleImageLoad}
-        style={dimensions}
-        
+      <div className="image-container">
+        <img
+         src={webformatURL}
+          alt=""
+          className={`searched--image ${imageLoaded ? "fade-in" : ""}`}
+          onLoad={handleImageLoad}
+          style={dimensions}   
       />
+      </div>
+      
     </div>
 
   ); 

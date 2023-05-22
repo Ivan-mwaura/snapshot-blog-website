@@ -1,16 +1,21 @@
 import React from "react";
 import Select from 'react-select';
+import { useSelector,useDispatch } from "react-redux";
+import { setSelectedImageType } from "../ReduxStore/store";
 
 const AllImages = () =>{
 
+    const selectedImageType = useSelector((state) => state.selectedImageType)
+    const dispatch = useDispatch();
+
     const options = [
-        { value: 'photos', label: 'Photos' },
-        { value: 'illustrations', label: 'Illustrations' },
-        { value: 'vectors', label: 'Vectors' },
-        { value: 'videos', label: 'Videos' },
+        { value: 'photo', label: 'Photos' },
+        { value: 'illustration', label: 'Illustrations' },
+        { value: 'vector', label: 'Vectors' },
+        { value: 'video', label: 'Videos' },
         { value: 'music', label: 'Music' },
         { value: 'sound effects', label: 'Sound Effects' },
-        { value: 'gifs', label: 'Gifs' },
+        { value: 'gif', label: 'Gifs' },
     ]
 
     const customStyles ={
@@ -32,9 +37,18 @@ const AllImages = () =>{
         })
     }
 
+    function handleSelectedImageType (selectedImageType){
+        dispatch(setSelectedImageType(selectedImageType))
+    }
+
 return(
     <div>
-        <Select options={options} styles={customStyles} placeholder = 'All Images'/>
+        <Select options={options} 
+        styles={customStyles}
+         placeholder = 'All Images'
+        value={selectedImageType}
+        onChange={handleSelectedImageType}
+         />
     </div>
 )
 }

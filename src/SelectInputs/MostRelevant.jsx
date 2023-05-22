@@ -1,14 +1,19 @@
 import React from "react";
 import Select from 'react-select';
+import { useSelector,useDispatch } from "react-redux";
+import { setSelectedOrder } from "../ReduxStore/store";
 
 const MostRelevant= () =>{
 
+    const selectedOrder = useSelector((state) => state.selectedOrder)
+    const dispatch  = useDispatch();
+
     const options = [
-        {  label: 'Any' },
-        { value: 'mostrelevant', label: 'Most Relevant' },
+        {  value: 'popular', label:'Popular'},
         { value: 'latest', label: 'latest' },
-        { value: 'editors choice', label: 'Editors Choice' },
         { value: 'trending', label: 'Trending' },    
+        { value: 'editors choice', label: 'Editors Choice' },
+        { value: 'mostrelevant', label: 'Most Relevant' },
         
     ]
 
@@ -32,9 +37,18 @@ const MostRelevant= () =>{
         })
     }
 
+    function  handleSelectOrder(selectedOrder){
+        dispatch(setSelectedOrder(selectedOrder))
+    }
+
 return(
     <div>
-        <Select options={options} styles={customStyles} placeholder = 'Most Relevant'/>
+        <Select options={options}
+         styles={customStyles}
+          placeholder = 'Most Relevant'
+          value={selectedOrder}
+          onChange={handleSelectOrder}
+          />
     </div>
 )
 }

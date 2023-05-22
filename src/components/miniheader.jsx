@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Question, Sliders,  } from "react-bootstrap-icons";
 import Switch from 'react-switch';
 import AllImages from "../SelectInputs/AllImages";
@@ -6,14 +6,20 @@ import Orientation from "../SelectInputs/Orientation";
 import Size from "../SelectInputs/Size";
 import PublishedDate from "../SelectInputs/PublishedDate";
 import MostRelevant from "../SelectInputs/MostRelevant";
+import { useSelector, useDispatch } from "react-redux";
+import { setSafeSearch } from "../ReduxStore/store";
 
 
 const MiniHeader = () =>{
 
-    const [isChecked, setisChecked] = useState(false)
+    
 
-    function handleChecked (checked){
-        setisChecked(checked)
+    const safeSearch = useSelector((state) => state.safeSearch)
+    const dispatch = useDispatch()
+    console.log(safeSearch)
+
+    function handleChecked (safeSearch){
+        dispatch(setSafeSearch(safeSearch))
     }
 
     return (
@@ -43,7 +49,7 @@ const MiniHeader = () =>{
          <span className ="mini-header-right">
             <span className ="switch">
                 <Switch
-                    checked = {isChecked}
+                    checked={safeSearch}
                     onChange={handleChecked}
                     size={100}
                 />&nbsp;&nbsp;
