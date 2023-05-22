@@ -1,36 +1,58 @@
-import React from "react";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Select from 'react-select';
+import { setSelectedOption } from '../ReduxStore/store'; // Update the import path according to your project structure
 
-const Orientation = () =>{
+const Orientation = () => {
+  const selectedOption = useSelector((state) => state.selectedOption);
+  const dispatch = useDispatch();
 
-    const options = [
-        { value: 'any', label: 'Any' },
-        { value: 'horizontal', label: 'horizontal' },      
-    ]
 
-    const customStyles ={
-        control: (provided) =>({
-            ...provided,
-            borderRadius:'5px',
-            border:'none',
-            width:'150px',
-            height:'40px',
 
-            '&:hover':{backgroundColor:' #d7dbdf', border:'none' ,borderRadius:'6px'}
 
-        }),
-        option:(provided, state) => ({
-            ...provided,
-            backgroundColor:state.isFocused ? 'green' : 'white',
-            color: state.isFocused ? 'black' : 'inherit',
-            borderRadius:'6px'
-        })
-    }
+  const options = [
+    { value: 'any', label: 'Any' },
+    { value: 'horizontal', label: 'horizontal' },
+    { value: 'vertical', label: 'vertical' },
+  ];
 
-return(
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      borderRadius: '5px',
+      border: 'none',
+      width: '150px',
+      height: '40px',
+      '&:hover': {
+        backgroundColor: '#d7dbdf',
+        border: 'none',
+        borderRadius: '6px',
+      },
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? 'green' : 'white',
+      color: state.isFocused ? 'black' : 'inherit',
+      borderRadius: '6px',
+    }),
+  };
+
+  const handleSelectOption = (selectedOption) => {
+    // Dispatch an action to update the selectedOption in Redux store
+    dispatch(setSelectedOption(selectedOption));
+  };
+
+  return (
     <div>
-        <Select options={options} styles={customStyles} placeholder ='Orientation'/>
+      <Select
+        options={options}
+        styles={customStyles}
+        placeholder="Orientation"
+        value={selectedOption}
+        onChange={handleSelectOption}
+      />
     </div>
-)
-}
+  );
+};
+
 export default Orientation;

@@ -53,8 +53,10 @@ const MiniHeader = () =>{
             <span className="question">
                 <Question/>
             </span>
-
-            <MostRelevant/>
+            <div className="most--relevant">
+                 <MostRelevant/>
+            </div>
+            
             
         </span>
         

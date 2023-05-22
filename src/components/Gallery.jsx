@@ -1,28 +1,112 @@
-import React, { useContext, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { BookmarkCheck, BookmarkPlus, Download, Heart } from "react-bootstrap-icons";
 import "../components/style.scss";
 import { saveAs } from "file-saver";
-import { AppContext } from "../Context/querycontext";
+import {useSelector } from "react-redux";
+//import { AppContext } from "../Context/querycontext";
+
+
+
 
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function calculateDimensions() {
-  const width = getRandomNumber(220, 250);
-  const height = getRandomNumber(200, 340);
-  return {
-    width: `${width}px`,
-    height: `${height}px`,
-  };
-}
 
 function Gallery({ webformatURL ,user,userProfile,tags}) {
   const [hovered, setHover] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [dimensions] = useState(calculateDimensions());
+  const [dimensions, setDimension] = useState();
   const[like, setLike]= useState(false)
   const[favourite, setFavourite] = useState(false)
+
+  const selectedOption = useSelector((state) => state.selectedOption );
+
+  useEffect(() => {
+    const image = new Image();
+    image.src = webformatURL;
+    image.onload = () => {
+      setImageLoaded(true);
+    };
+  }, [webformatURL]);
+  
+
+  useEffect(()=>{
+
+    function handleSize(){
+      setDimension(dimension())
+    }
+
+    setDimension(dimension())
+
+    function dimension (){
+
+      let width ,height;
+  
+    if(selectedOption &&selectedOption.value === 'vertical'){
+      if(window.innerWidth < 600){
+        width = getRandomNumber(200, 240);
+         height = getRandomNumber(200, 300);
+      }
+    
+      else if(window.innerWidth > 768 && window.innerWidth < 1000){
+        width = getRandomNumber(190, 220);
+         height = getRandomNumber(200, 300);
+      }
+      else{
+        width = getRandomNumber(220, 250);
+       height = getRandomNumber(250, 330);
+      }
+    }
+    else if(selectedOption &&selectedOption.value === 'horizontal'){
+         if(window.innerWidth < 600){
+        width = 250;
+         height = 250;
+      }
+    
+      else if(window.innerWidth > 768 && window.innerWidth < 1000){
+        width = 250;
+         height = 250;
+      }
+      else{
+        width = 250;
+       height = 250;
+      }
+    }
+    else{
+      if(window.innerWidth < 600){
+        width = 440;
+         height = 350;
+      }
+    
+      else if(window.innerWidth > 768 && window.innerWidth < 1000){
+        width = getRandomNumber(190, 220);
+         height = getRandomNumber(200, 300);
+      }
+      else{
+        width = getRandomNumber(220, 250);
+       height = getRandomNumber(250, 330);
+      }
+    }
+      
+     
+      
+      return {
+        width: `${width}px`,
+        height: `${height}px`,
+      };
+     
+    }
+
+    window.addEventListener('resize', handleSize)
+
+    return ( ()=>{
+      window.removeEventListener('resize', handleSize)
+    })
+    
+  },[selectedOption])
+
+ 
 
   function handleMouseEnter() {
     setHover(true);
@@ -53,11 +137,11 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
     
   }
 
-  const{feedback} = useContext(AppContext)
+  //const{feedback} = useContext(AppContext)
 
   return (
         
-    !feedback ?  <div
+     <div
       className={`gallery--div ${hovered ? "hovered" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -149,7 +233,7 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
         style={dimensions}
         
       />
-    </div> : null
+    </div>
 
   ); 
 }

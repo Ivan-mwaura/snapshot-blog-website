@@ -1,0 +1,7 @@
+const selectOrientation = (selectedOption) => ({
+   type: 'SET_SELECTED_OPTION',
+   payload: selectedOption,
+ });
+ 
+ export default selectOrientation;
+ 

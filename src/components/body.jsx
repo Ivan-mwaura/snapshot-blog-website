@@ -39,11 +39,9 @@ const Body = () =>{
 
     if(data > 0){
         setFeedback(true)
-        console.log("overfeedback")
+        
     }
-    else{
-        console.log("feedback")
-    }
+   
     const apidata = data.map(dt => {
        
         return(
@@ -72,8 +70,10 @@ const Body = () =>{
                     <SecondHeader/>           
                            
                 <div className="mapped--div">
-
-                    {apidata}
+                   
+                        {apidata}
+                   
+                    
                 </div>
             </div>
         </div>

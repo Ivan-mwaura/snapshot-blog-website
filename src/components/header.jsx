@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"; 
+import React from "react"; 
 import "../components/style.scss"
 import { AppContext } from "../Context/querycontext";
 import { useContext } from "react";
@@ -9,7 +9,7 @@ import Explore from "../SelectInputs/Explore";
 const Header = () =>{
 
     const {query,setQuery} = useContext(AppContext)
-    const[windowWidth, setwindowWidth] = useState(window.innerWidth)
+
 
     function handleChange(event){
       
@@ -21,19 +21,7 @@ const Header = () =>{
                    
         })
     }
-    console.log(windowWidth)
 
-  useEffect(()=>{
-    function handleResize(){
-        setwindowWidth(window.innerWidth)
-    }
-    
-
-    window.addEventListener("resize" , handleResize)
-
-    window.removeEventListener("resize", handleResize)
- 
-  },[setwindowWidth])
 
 
     return(
