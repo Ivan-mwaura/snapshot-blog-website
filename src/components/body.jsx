@@ -20,28 +20,49 @@ const Body = () =>{
     const selectedImageType = useSelector((state) => state.selectedImageType)
     const selectedOrder = useSelector((state) => state.selectedOrder)
     const safeSearch = useSelector((state) => state.safeSearch)
+    const publishDate = useSelector((state) => state.publishDate)
+
+    console.log(publishDate && publishDate.value)
 
 
+    function getPastDate(today, months) {
+        const pastDate = new Date(today.getTime());
+        pastDate.setMonth(today.getMonth() - months);
+        return pastDate.toISOString().slice(0, 10);
+      }
+      
 
     
     useEffect(() => {
 
-        function getimage(){
-            fetch (`https://pixabay.com/api/?key=${apikey}&q=${encodeURIComponent(query.searchQuery)}&page=3&per_page=100&image_type=${selectedImageType && selectedImageType.value}&order=${selectedOrder && selectedOrder.value}&safesearch=${safeSearch}`)
-           .then(response => response.json())
-           .then(response => {
-                             setData(response.hits)
-                             setHits(response.total)
-                        }                 
-            )
-           
-        }
+        function getimage() {
+            const today = new Date();
+            const minUploadDate = getPastDate(today, publishDate && parseInt(publishDate.value)); // 1 month ago
+            const maxUploadDate = today.toISOString().slice(0, 10); // Today's date
+      
+            const url = `https://pixabay.com/api/?key=${apikey}&q=${encodeURIComponent(
+              query.searchQuery
+            )}&page=3&per_page=100&image_type=${
+              selectedImageType && selectedImageType.value
+            }&order=${selectedOrder && selectedOrder.value}&safesearch=${safeSearch
+            }&min_upload_date=${minUploadDate}&max_upload_date=${maxUploadDate}`;
+      
+            fetch(url)
+              .then((response) => response.json())
+              .then((response) => {
+                setData(response.hits);
+                setHits(response.total);
+              })
+              .catch((error) => {
+                console.error("Error fetching images:", error);
+              });
+          }
         
         getimage()
 
       
 
-    },[query,setData,setHits,selectedImageType,selectedOrder,safeSearch])
+    },[query,setData,setHits,selectedImageType,selectedOrder,safeSearch,publishDate])
 
     if(data > 0){
         setFeedback(true)

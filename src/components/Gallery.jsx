@@ -45,16 +45,30 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
       let width ,height;
   
     if(selectedOption &&selectedOption.value === 'vertical'){
-      width = getRandomNumber(220, 250);
-        height = getRandomNumber(250, 330);
+        if(window.innerWidth < 600){
+          width = 420;
+          height = 250;
+        }
+        else{
+          width = getRandomNumber(220, 250);
+           height = getRandomNumber(250, 330);
+        }
+      
     }
     else if(selectedOption &&selectedOption.value === 'horizontal'){
       width = 250;
       height = 250;
     }
     else{
-      width = getRandomNumber(220, 250);
-      height = getRandomNumber(250, 330);
+      if(window.innerWidth < 600){
+        width = 420;
+        height = 250;
+      }
+      else{
+        width = getRandomNumber(220, 250);
+         height = getRandomNumber(250, 330);
+      }
+
     }
       
           

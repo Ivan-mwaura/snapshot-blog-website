@@ -5,7 +5,8 @@ const initialState = {
   selectedOption: null,
   selectedImageType:null,
   selectedOrder:null,
-  safeSearch:false
+  safeSearch:false,
+  publishDate:null
   // Add any other initial state properties here
 };
 
@@ -36,6 +37,13 @@ export const setSafeSearch = (option) =>{
   return{
     type:'SET_SAFE_SEARCH',
     payload: option
+  }
+}
+
+export const setPublishDate = (option) =>{
+  return{
+    type:'SET_PUBLISH_DATE',
+    payload:option
   }
 }
 
@@ -79,12 +87,22 @@ const safeSearchReducer = (state = initialState.safeSearch, action) =>{
   }
 }
 
+const publishDateReducer = (state = initialState.publishDate, action) => {
+  switch(action.type){
+    case 'SET_PUBLISH_DATE':
+      return action.payload
+   default:
+    return state
+  }
+}
+
 // Combine all reducers
 const rootReducer = combineReducers({
   selectedOption: selectedOptionReducer,
   selectedImageType: selectedImageTypeReducer,
   selectedOrder: selectedOrderReducer,
-  safeSearch: safeSearchReducer
+  safeSearch: safeSearchReducer,
+  publishDate: publishDateReducer
   // Add any other reducers here
 });
 

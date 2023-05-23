@@ -1,15 +1,21 @@
 import React from "react";
 import Select from 'react-select';
+import { useSelector,useDispatch } from "react-redux";
+import { setPublishDate } from "../ReduxStore/store";
 
 const PublishedDate= () =>{
 
+    const publishDate = useSelector((state) => state.publishDate) 
+    const dispatch = useDispatch()
+
     const options = [
-        {  label: 'Any' },
-        { value: '<12', label: '<12 hours' },
-        { value: '<24', label: '<24 hours' },
-        { value: '<72', label: '<72 hours' },
-        { value: '<6', label: '<6 Months' },
-        { value: '<7', label: '<7 Months' },       
+        {  label: 'Filter Images by ' },
+        { value: '1', label: '1 month' },
+        { value: '2', label: '2 months' },
+        { value: '3', label: '3 months' },
+        { value: '4', label: '4 months' },
+        { value: '5', label: '5 months' },   
+        { value: '6', label: '6 months' },     
         
     ]
 
@@ -21,7 +27,7 @@ const PublishedDate= () =>{
             width:'180px',
             height:'40px',
 
-            '&:hover':{backgroundColor:' #d7dbdf', border:'none' ,borderRadius:'6px'}
+            '&:hover':{backgroundColor:' #f0f0f0', border:'none' ,borderRadius:'6px'}
 
         }),
         option:(provided, state) => ({
@@ -32,9 +38,18 @@ const PublishedDate= () =>{
         })
     }
 
+    function handlePublishDate (publishDate){
+        dispatch(setPublishDate(publishDate))
+    }
+
 return(
     <div>
-        <Select options={options} styles={customStyles} placeholder = 'Published Date'/>
+        <Select options={options} 
+        styles={customStyles} 
+        placeholder = 'Published Date'
+        value={publishDate}
+        onChange={handlePublishDate}
+        />
     </div>
 )
 }

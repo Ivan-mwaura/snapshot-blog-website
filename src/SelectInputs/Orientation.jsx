@@ -24,7 +24,7 @@ const Orientation = () => {
       width: '150px',
       height: '40px',
       '&:hover': {
-        backgroundColor: '#d7dbdf',
+        backgroundColor: '#f0f0f0',
         border: 'none',
         borderRadius: '6px',
       },

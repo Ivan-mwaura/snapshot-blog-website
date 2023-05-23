@@ -16,7 +16,7 @@ const MiniHeader = () =>{
 
     const safeSearch = useSelector((state) => state.safeSearch)
     const dispatch = useDispatch()
-    console.log(safeSearch)
+    
 
     function handleChecked (safeSearch){
         dispatch(setSafeSearch(safeSearch))

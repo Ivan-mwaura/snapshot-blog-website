@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { X } from 'react-bootstrap-icons';
 import Select from 'react-select';
@@ -34,76 +35,83 @@ const Explore = () => {
     ],
   };
 
-    const[selectedOption, setSelectedOption] = useState(null)
-    const[collapse, setcollapse] = useState(true)
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [collapse, setCollapse] = useState(true);
 
-    const handleSelectchange= (selectedOption) =>{
-        setSelectedOption(selectedOption)
-        setcollapse(!collapse)
-    }
+  const handleSelectChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
+    setCollapse(!collapse);
+  };
 
-    const handleCollapse = ()=>{
-        setcollapse((prevState) => !prevState)
-    }
+  const handleCollapse = () => {
+    setCollapse((prevState) => !prevState);
+  };
 
-    const customStyles = {
-        control: (provided) => ({
-            ...provided,
-            borderRadius:'5px',
-            border:'none',
-            width:'150px',
-            height:'40px',
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      borderRadius: '5px',
+      border: 'none',
+      width: '150px',
+      height: '40px',
 
-            '&:hover':{backgroundColor:' #d7dbdf', border:'none' ,borderRadius:'6px'}
-        }),
-        
+      '&:hover': { backgroundColor: '#f0f0f0', border: 'none', borderRadius: '6px' },
+    }),
 
-        
-        option:(provided, state) => ({
-            ...provided, 
-            backgroundColor:state.isFocused ? 'green' : 'white',
-            color: state.isFocused ? 'black' : 'inherit',
-            borderRadius:'6px'
-          
-        }),
-        nestedOption:(provided, state) => ({
-            ...provided,
-           
-            //backgroundColor: state.isFocused ? 'lightgreen' : 'inherit',
-            color: state.isFocused ? 'black' : 'gray',
-            fontSize: state.isFocused ?'15px': '15px',
-            fontWeight: state.isFocused ? '500': '500',
-            
-        })
-    }
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? 'green' : 'white',
+      color: state.isFocused ? 'black' : 'black',
+      borderRadius: '6px',
+    }),
+  };
 
-    return(
-        <div className='select--container'>
-            <Select options={options} onChange={handleSelectchange} styles={customStyles}  placeholder = 'Explorer' />
+  const nestedOptionStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      color: state.isFocused ? 'green' : 'green',
+      fontSize: state.isFocused ? '5px' : '5px',
+      fontWeight: state.isFocused ? '5' : '5',
+    }),
+  };
 
-            {selectedOption && (
-                <div className='list--container'>
-                   {childrenMapping[selectedOption.value] && (
-                    <div className='list--content'>
-                        <ul>
-                            {collapse && <X
-                            color='white'
-                            size={35}
-                            className='x--icon'
-                            onClick={handleCollapse}
-                            />}
-                            
-                            { collapse && childrenMapping[selectedOption.value].map((child) => (  
-                                                                                                
-                                    <li key = {child.value}>{child.label}</li>                                                               
-                            ))}
-                        </ul>
-                    </div>
-                   )} 
-                </div>
-            )}
+  return (
+    <div className='select--container'>
+      <Select
+        options={options}
+        onChange={handleSelectChange}
+        styles={customStyles}
+        placeholder='Explorer'
+      />
+
+      {selectedOption && (
+        <div className='list--container'>
+          {childrenMapping[selectedOption.value] && (
+            <div className='list--content' style={{border : collapse ? '2px solid #f0f0f0' :  'none'}}>
+              <ul>
+                {collapse && (
+                  <X
+                    color='Black'
+                    
+                    size={35}
+                    className='x--icon'
+                    onClick={handleCollapse}
+                  />
+                )}
+
+                {collapse &&
+                  childrenMapping[selectedOption.value].map((child) => (
+                    <li key={child.value} styles={nestedOptionStyles.option}>
+                      {child.label}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          )}
         </div>
-    )
+      )}
+    </div>
+  );
 };
 
 export default Explore;

@@ -26,7 +26,7 @@ const MostRelevant= () =>{
             height:'40px',
             marginLeft:'20px',
 
-            '&:hover':{backgroundColor:' #d7dbdf', border:'none' ,borderRadius:'6px'}
+            '&:hover':{backgroundColor:'#f0f0f0', border:'none' ,borderRadius:'6px'}
 
         }),
         option:(provided, state) => ({
