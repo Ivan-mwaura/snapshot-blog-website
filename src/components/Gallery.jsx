@@ -61,7 +61,7 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
     }
     else{
       if(window.innerWidth < 600){
-        width = 435;
+        width = 450;
         height = 260;
       }
       else{
