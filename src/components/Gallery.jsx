@@ -61,8 +61,8 @@ function Gallery({ webformatURL ,user,userProfile,tags}) {
     }
     else{
       if(window.innerWidth < 600){
-        width = 420;
-        height = 250;
+        width = 435;
+        height = 260;
       }
       else{
         width = getRandomNumber(220, 250);

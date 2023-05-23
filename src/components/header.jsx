@@ -42,16 +42,6 @@ const Header = () =>{
                     
                 />
                
-
-           {/*
-           <select  className = "explore">
-                <option value="">Explore</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-            </select>
-            */} 
-              
                 </form>
             </span>
 
@@ -65,8 +55,9 @@ const Header = () =>{
             />
             </span>
             <Justify
-                    size={70}
+                    size={60}
                     className="justify--icon"
+                    color="black"
                 />
 
            <span className="profile">

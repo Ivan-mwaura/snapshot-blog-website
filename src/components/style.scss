@@ -31,6 +31,10 @@
     justify-content: center;
     background-color: gray;
     width: 100%;
+    
+    @include mobile{
+      margin-left: 5px;
+    }
       
     .header--content{
         display: flex;
@@ -82,13 +86,17 @@
         
        }
        .justify--icon{
-        margin-left: 30px;
+        margin-left: 10px;
         padding-bottom: 10px;
-        display:none;
+        display: none;
 
         @include tablet{
           display: block;
         }
+        @include mobile{
+          display: block;
+        }
+
 
        }
        
@@ -240,6 +248,7 @@
     padding: 0px;
     margin-top:70px;
     margin-left: 10px;
+    width: 100%;
     
 
   .mini-header-container{
@@ -520,7 +529,7 @@
           @include mobile{
             display: grid;
             grid-template-columns: repeat(1, 1fr);
-            margin-left: 15px;
+            margin-left: 5px;
             
           }
          
